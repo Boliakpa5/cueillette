@@ -5,6 +5,11 @@ ruby "3.1.2"
 
 gem "devise"
 
+<<<<<<< HEAD
+=======
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git'
+
+>>>>>>> 811a6697f65e5dab5a20d7ab04481660495bf2bc
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
 
