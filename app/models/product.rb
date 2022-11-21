@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  CATEGORIES = ["légume, boisson"]
+  CATEGORIES = ["Légume", "Boisson"]
   belongs_to :user
   has_many :orders
 
