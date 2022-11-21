@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
-before_action :set_user
+  skip_before_action :authenticate_user!
+  before_action :set_user, except: [:destroy]
 
   def new
     @product = Product.new
@@ -15,10 +16,10 @@ before_action :set_user
     end
   end
 
-  def delete
+  def destroy
     @product = Product.find(params[:id])
     @product.delete
-    redirect_to user_path(@user)
+    redirect_to users_path
   end
 
   private
