@@ -1,10 +1,19 @@
-<div class="banner">
-  <iframe class="banner-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10498.606831387035!2d2.3710982574334984!3d48.864851611759825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66df010ec3bff%3A0x6b419acfa77236a0!2sLe%20Wagon%20Paris!5e0!3m2!1sfr!2sfr!4v1669045333577!5m2!1sfr!2sfr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-  <h1>Hello</h1>
-</div>
 
-<ul>
-  <% @users.each do |user| %>
-    <li><%= user.first_name %></li>
-  <% end %>
-</ul>
+<h1>Hello</h1>
+<!-- app/views/shared/_flashes.html.erb -->
+<% if notice %>
+  <div class="alert alert-info alert-dismissible fade show m-1" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <%= notice %>
+  </div>
+<% end %>
+<% if alert %>
+  <div class="alert alert-warning alert-dismissible fade show m-1" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <%= alert %>
+  </div>
+<% end %>
+<% @users.each do |user| %>
+<span>user: <%= user.first_name %></span>
+<% end %>
+
