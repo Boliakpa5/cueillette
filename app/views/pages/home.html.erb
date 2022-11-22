@@ -1,2 +1,9 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+  <ul>
+    <% @users.each do |user| %>
+      <li><%= link_to user.first_name, user_path(user) %></li>
+    <% end %>
+  </ul>
+</div>
