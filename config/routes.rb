@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show] do
     resources :products, only: [:new, :create]
   end
-  resources :products, only: [:destroy]
+  resources :products, only: [:destroy], as: :destroy
 end

@@ -7,7 +7,9 @@ class UsersController < ApplicationController
     @users = policy_scope(User)
   end
 
-  def show; end
+  def show
+    authorize @user
+  end
 
   # def new
   #   @user = User.new
