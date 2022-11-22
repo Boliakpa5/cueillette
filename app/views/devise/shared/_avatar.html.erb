@@ -1,0 +1,5 @@
+<% if user.photo.attached? %>
+  <%= cl_image_tag user.photo.key, alt: "Picture of #{user.first_name} #{user.last_name}", class: "avatar-large" %>
+<% else %>
+  <%= image_tag 'default-avatar.jpg', class: "avatar-large" %>
+<% end %>

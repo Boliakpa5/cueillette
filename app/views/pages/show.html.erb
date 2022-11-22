@@ -1,8 +1,13 @@
 
 <% if @user == current_user %>
-  <div class="container">
-    <h1 class="h2">Hi, <%= @user.first_name %></h1>
-    <%= link_to 'Edit my info', edit_user_registration_path, class: 'btn btn-outline-primary' %>
+  <div class="bg-light py-4">
+    <div class="container">
+      <div class="d-flex">
+        <%= render 'devise/shared/avatar', user: @user %>
+      </div>
+      <h1 class="h2">Hi, <%= @user.first_name %></h1>
+      <%= link_to 'Edit my info', edit_user_registration_path, class: 'btn btn-outline-primary' %>
+    </div>
   </div>
 <% end %>
 
@@ -18,6 +23,24 @@
   <% end %>
 
 <% end %>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <% if current_user == @user %>
   <%= link_to "Rajouter un produit", new_page_product_path(@user) %>
