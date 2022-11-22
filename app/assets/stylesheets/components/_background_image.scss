@@ -1,0 +1,8 @@
+.bg-img-tomate {
+  background-image: asset-url("cueillette-tomate.jpg");
+  background-size: cover;
+  background-position: 50% 50%;
+  min-height: calc(100vh - 66px);
+  display: flex;
+  align-items: center;
+}
