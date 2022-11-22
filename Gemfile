@@ -5,6 +5,8 @@ ruby "3.1.2"
 
 gem "devise"
 
+gem "pundit"
+
 gem "cloudinary"
 
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git'
