@@ -1,2 +1,13 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<%= render "devise/shared/banner" %>
+
+
+<div id='map' style='width: 400px; height: 300px;'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiY3VlaWxsZXR0ZSIsImEiOiJjbGFzNDFsNTgxemVtM290YXlkMjBuMjg0In0.gTPzK_2vfkLFK2jIpbXyyg';
+const map = new mapboxgl.Map({
+    container: 'map', // container ID
+    style: 'mapbox://styles/mapbox/streets-v12', // style URL
+    center: [-74.5, 40], // starting position [lng, lat]
+    zoom: 9, // starting zoom
+});
+</script>
