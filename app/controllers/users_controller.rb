@@ -4,9 +4,12 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @users = policy_scope(User)
   end
 
-  def show; end
+  def show
+    authorize @user
+  end
 
   # def new
   #   @user = User.new

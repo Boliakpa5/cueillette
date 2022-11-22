@@ -4,11 +4,14 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    authorize @product
   end
 
   def create
     @product = Product.new(product_params)
-    @product.user = @user
+    @product.user = User.find(params[:user_id])
+    # record = params[:user_id]
+    authorize @product
     if @product.save
       redirect_to user_path(@user)
     else
@@ -18,8 +21,9 @@ class ProductsController < ApplicationController
 
   def destroy
     @product = Product.find(params[:id])
+    authorize @product
     @product.delete
-    redirect_to users_path
+    redirect_to root_path
   end
 
   private
