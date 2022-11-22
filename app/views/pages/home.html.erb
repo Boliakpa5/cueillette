@@ -3,7 +3,7 @@
 <div class="container">
   <ul>
     <% @users.each do |user| %>
-      <li><%= link_to user.first_name, user_path(user) %></li>
+      <li><%= link_to user.first_name, page_path(user) %></li>
     <% end %>
   </ul>
 </div>
