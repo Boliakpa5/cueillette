@@ -2,7 +2,7 @@
 <p>Find me in app/views/pages/home.html.erb</p>
 <div class="container">
   <ul>
-    <% @users.each do |user| %>
+    <% @users.where(is_market: true).each do |user| %>
       <li><%= link_to user.first_name, products_path(user_id: user) %></li>
     <% end %>
   </ul>
