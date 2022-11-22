@@ -25,6 +25,10 @@
                         hint: "we need your current password to confirm your changes",
                         required: true,
                         input_html: { autocomplete: "current-password" } %>
+            <div class="form-check form-switch ps-3">
+              <%= f.input :is_market, class: 'form-check-input', label: "Do you wan't to sell too?" %>
+            </div>
+
           </div>
 
           <div class="form-actions">
