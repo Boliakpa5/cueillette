@@ -7,5 +7,7 @@ class User < ApplicationRecord
   has_many :products
   has_many :orders
 
+  has_one_attached :photo
+
   validates :first_name, :last_name, presence: true
 end
