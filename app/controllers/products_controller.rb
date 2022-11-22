@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_user, except: [:destroy]
+  before_action :set_user, only: [:index]
 
   def index
     @products = policy_scope(Product)
@@ -14,10 +14,9 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     @product.user = current_user
-    # record = params[:user_id]
     authorize @product
     if @product.save
-      redirect_to products_path(current_user)
+      redirect_to products_path(user_id: current_user)
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,7 +26,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     authorize @product
     @product.delete
-    redirect_to products_path(current_user)
+    redirect_to products_path(user_id: current_user)
   end
 
   private
