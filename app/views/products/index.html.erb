@@ -1,3 +1,4 @@
+<%= @user.first_name  %>
 
 <% if @user == current_user %>
   <div class="container">
@@ -6,20 +7,20 @@
   </div>
 <% end %>
 
-<%= @user.first_name  %>
-<% @user.products.each do |product| %>
+
+<% @products.where(user_id: @user).each do |product| %>
   <% if product.photo.attached? %>
     <%= cl_image_tag product.photo.key, height: 300, width: 400, crop: :fill %> <br>
   <% end %>
   <%= product.title  %> <br>
   <%= product.category  %> <br>
   <% if current_user == @user %>
-    <%= button_to "Delete product", destroy_path(product), method: :delete %>
+    <%= button_to "Delete product", product_path(product), method: :delete %>
   <% end %>
 
 <% end %>
 
 <% if current_user == @user %>
-  <%= link_to "Rajouter un produit", new_page_product_path(@user) %>
+  <%= link_to "Rajouter un produit",  new_product_path(user_id: @user) %>
 <% end %>
 <%# if policy(Product).new? %>
