@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # skip_before_action :authenticate_user!
+  skip_before_action :authenticate_user!
   before_action :set_user, only: %i[show]
 
   def index
