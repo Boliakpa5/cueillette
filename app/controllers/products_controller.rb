@@ -12,7 +12,6 @@ class ProductsController < ApplicationController
   end
 
   def create
-    raise
     @product = Product.new(product_params)
     @product.user = current_user
     # record = params[:user_id]
