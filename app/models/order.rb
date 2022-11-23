@@ -4,5 +4,4 @@ class Order < ApplicationRecord
   belongs_to :product
 
   validates :user, :product, :pickup_date, presence: true
-  validates :status, inclusion: { in: STATUS }
 end
