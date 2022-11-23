@@ -2,6 +2,10 @@ class OrdersController < ApplicationController
   before_action :set_user
   before_action :set_product, only: [:new, :create]
 
+  def index
+    @orders = policy_scope(Order)
+  end
+
   def new
     @order = Order.new
     authorize @order

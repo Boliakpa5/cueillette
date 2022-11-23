@@ -1,0 +1,5 @@
+<h1>My orders</h1>
+
+<% @orders.where(user_id: @user).each do |order| %>
+<span><%= order.product.title  %></span>
+<% end %>
