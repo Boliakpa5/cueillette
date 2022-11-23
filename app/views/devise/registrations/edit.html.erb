@@ -26,6 +26,20 @@
                         required: true,
                         input_html: { autocomplete: "current-password" } %>
             <%= f.input :photo, as: :file %>
+            <div data-controller="update-form">
+              <div class="form-check form-switch ps-3" data-action="change->update-form#togglePart">
+                <%= f.input :is_market, class: 'form-check-input', label: "Do you wan't to sell too?", html: { :"data-update-form-target" => "checkbox" } %>
+              </div>
+
+              <div class="d-none bg-light" data-update-form-target="seller">
+                <%= f.input :phone_number,
+                            autofocus: true %>
+                <%= f.input :address,
+                            autofocus: true %>
+                <%= f.input :market_name,
+                            autofocus: true %>
+              </div>
+            </div>
           </div>
 
           <div class="form-actions">
