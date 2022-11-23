@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
   # Include default devise modules. Others available are:
@@ -13,8 +12,9 @@ class User < ApplicationRecord
   has_one_attached :photo
 
   validates :first_name, :last_name, presence: true
+  validates :market_name, :address, presence: true, if: :market?
 
-  def is_market?
+  def market?
     is_market
   end
 end

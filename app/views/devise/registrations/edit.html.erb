@@ -28,15 +28,17 @@
             <%= f.input :photo, as: :file %>
             <div data-controller="update-form">
               <div class="form-check form-switch ps-3" data-action="change->update-form#togglePart">
-                <%= f.input :is_market, class: 'form-check-input', label: "Do you wan't to sell too?", html: { :"data-update-form-target" => "checkbox" } %>
+                <%= f.input :is_market, class: 'form-check-input', label: "Do you wan't to sell your own products?", input_html: { :"data-update-form-target" => "checkbox" } %>
               </div>
 
               <div class="d-none bg-light" data-update-form-target="seller">
-                <%= f.input :phone_number,
+                <%= f.input :market_name,
+                            required: true,
                             autofocus: true %>
                 <%= f.input :address,
+                            required: true,
                             autofocus: true %>
-                <%= f.input :market_name,
+                <%= f.input :phone_number,
                             autofocus: true %>
               </div>
             </div>
