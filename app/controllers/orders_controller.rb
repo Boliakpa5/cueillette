@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  skip_before_action :authenticate_user!, except: [:new, :create]
   before_action :set_user
   before_action :set_product, only: [:new, :create]
 
@@ -17,7 +18,7 @@ class OrdersController < ApplicationController
     @order.product = @product
     authorize @order
     if @order.save
-      redirect_to root_path
+      redirect_to orders_path(@user)
     else
       render :new, status: :unprocessable_entity
     end
