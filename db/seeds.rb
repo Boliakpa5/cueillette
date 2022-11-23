@@ -7,11 +7,6 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 
-<<<<<<< HEAD
-5.times {
-  product = Product.create(title: Faker::Cannabis.cannabinoid, price: rand(0...100), category: ["Légume", "Boisson"].sample, user: User.all.sample)
-}
-=======
 User.create(address: "Kervihan, 29700 Pluguffan", market_name: "La Ferme de Kervihan", is_market: true, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, phone_number: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, password: "1234567182763")
 User.create(address: "41 Hent Alexandre Masse, 29700 Plomelin", market_name: "Legumaj Kergwenn", is_market: true, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, phone_number: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, password: "1234567182763")
 User.create(address: "15 Chem. de Kermadec, 29000 Quimper", market_name: "Quintin Annick", is_market: true, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, phone_number: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, password: "1234567182763")
@@ -32,4 +27,3 @@ User.create(address: "Kerautret, 29120 Tréméoc", market_name: "La Ferme De Ké
 User.all.each do |i|
   Product.create(title: Faker::Cannabis.cannabinoid, price: rand(0...100), category: ["Légume", "Boisson"].sample, user: i)
 end
->>>>>>> c2cbb993909d64a03cb5d904aa0fb71e7956cfd8
