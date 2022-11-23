@@ -4,6 +4,10 @@ class ProductsController < ApplicationController
 
   def index
     @products = policy_scope(Product)
+    @markers = [{
+      lat: @user.latitude,
+      lng: @user.longitude
+    }]
   end
 
   def new

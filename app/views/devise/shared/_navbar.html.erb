@@ -16,7 +16,7 @@
           </li>
           <li class="nav-item dropdown">
             <% if current_user.photo.attached? %>
-              <%= cl_image_tag current_user.photo.key, alt: "Picture of #{@user.first_name} #{@user.last_name}", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <%= cl_image_tag current_user.photo.key, alt: "Picture of #{current_user.first_name} #{current_user.last_name}", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <% else %>
               <%= image_tag 'default-avatar.jpg', class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <% end %>
