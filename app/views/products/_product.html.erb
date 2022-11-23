@@ -12,4 +12,9 @@
     </div>
     <h2 class="card-trip-pricing"><%= product.price %>€</h2>
   </div>
+  <% if current_user == user %>
+    <%= button_to "Delete product", product_path(product), method: :delete %>
+  <% else %>
+    <%= link_to "Buy product", new_product_order_path(product)  %>
+  <% end %>
 </div>
