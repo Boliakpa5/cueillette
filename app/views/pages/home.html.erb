@@ -14,7 +14,7 @@
 <div class="container">
   <ul>
     <% @users.where(is_market: true).each do |user| %>
-      <li><%= link_to user.first_name, products_path(user_id: user) %></li>
+      <li><%= link_to user.market_name, products_path(user_id: user) %></li>
     <% end %>
   </ul>
 </div>

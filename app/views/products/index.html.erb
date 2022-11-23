@@ -5,7 +5,7 @@
         <%= render 'devise/shared/avatar', user: @user %>
       </div>
       <h1 class="h2">Hi, <%= @user.first_name %></h1>
-      <%= link_to 'Edit my info', edit_user_registration_path, class: 'btn btn-outline-primary' %>
+      <%= link_to 'Edit my info', edit_user_registration_path, class: 'btn btn-outline-success' %>
     </div>
   </div>
 <% end %>
@@ -26,24 +26,11 @@
           <p>Owner: <%= @user.first_name %> <%= @user.last_name[0] %>.</p>
         </div>
     </div>
-    <h2 class="h3">Available product<%= (@products.count > 1 ? 's' : '') %>:</h2>
+    <h2 class="h3">Available product<%= (@products.where(user_id: @user).count > 1 ? 's' : '') %>:</h2>
     <div class="row">
       <% @products.where(user_id: @user).each do |product| %>
-        <div class="col-md-3">
-          <div class="card-trip">
-            <% if product.photo.attached? %>
-              <%= cl_image_tag product.photo.key %>
-            <% else %>
-              <%= image_tag 'default-vegetables.jpg' %>
-            <% end %>
-            <div class="card-trip-infos">
-              <div>
-                <h3><%= product.title  %></h3>
-                <p><%= product.description %></p>
-              </div>
-              <h2 class="card-trip-pricing"><%= product.price %>€</h2>
-            </div>
-          </div>
+        <div class="col-md-4">
+          <%= render 'product', product: product %>
         </div>
         <% if current_user == @user %>
           <%= button_to "Delete product", product_path(product), method: :delete %>
