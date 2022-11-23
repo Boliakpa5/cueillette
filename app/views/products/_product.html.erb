@@ -1,14 +1,14 @@
-<article class="card-trip mb-4">
+<article class="card-product mb-4">
   <span class="badge rounded-pill text-bg-success"><%= product.category %></span>
   <% if product.photo.attached? %>
     <%= cl_image_tag product.photo.key %>
   <% else %>
     <%= image_tag 'default-vegetables.jpg' %>
   <% end %>
-  <div class="card-trip-infos">
+  <div class="card-product-infos">
     <div>
       <h3><%= product.title  %></h3>
-      <p><%= (product.description.blank? ? "Delicious #{product.title}" : product.description) %></p>
+      <p><%= product.description.blank? ? "Delicious #{product.title}" : product.description %></p>
     </div>
     <hr>
     <div class="d-flex align-items-center justify-content-between">
@@ -21,7 +21,7 @@
           <i class="fa-solid fa-basket-shopping"></i> buy
         <% end %>
       <% end %>
-      <h3 class="card-trip-pricing"><%= product.price %>€</h3>
+      <h3 class="card-product-pricing"><%= product.price %>€</h3>
     </div>
   </div>
 </article>
