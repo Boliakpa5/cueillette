@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-
+require 'open-uri'
 
 User.create(address: "Kervihan, 29700 Pluguffan", market_name: "La Ferme de Kervihan", is_market: true, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, phone_number: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, password: "1234567182763")
 User.create(address: "41 Hent Alexandre Masse, 29700 Plomelin", market_name: "Legumaj Kergwenn", is_market: true, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, phone_number: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, password: "1234567182763")
@@ -25,5 +25,5 @@ User.create(address: "Kerlagadec, 29750 Loctudy", market_name: "BOEUF ANGUS de L
 User.create(address: "Kerautret, 29120 Tréméoc", market_name: "La Ferme De Kérautret", is_market: true, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, phone_number: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, password: "1234567182763")
 
 User.all.each do |i|
-  Product.create(title: Faker::Cannabis.cannabinoid, price: rand(0...100), category: ["Légume", "Boisson"].sample, user: i)
+  Product.create(title: Faker::Food.vegetables, price: rand(0...100), category: ["Légume", "Boisson"].sample, user: i)
 end

@@ -1,23 +1,5 @@
-<% if notice %>
-  <div class="alert alert-info alert-dismissible fade show m-1" role="alert">
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    <%= notice %>
-  </div>
-<% end %>
-<% if alert %>
-  <div class="alert alert-warning alert-dismissible fade show m-1" role="alert">
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    <%= alert %>
-  </div>
-<% end %>
+<%= render "devise/shared/banner" %>
 
-<div class="container">
-  <ul>
-    <% @users.where(is_market: true).each do |user| %>
-      <li><%= link_to user.market_name, products_path(user_id: user) %></li>
-    <% end %>
-  </ul>
-</div>
 <div style="width: 100%; height: 600px;"
   data-controller="map"
   data-map-markers-value="<%= @markers.to_json %>"
