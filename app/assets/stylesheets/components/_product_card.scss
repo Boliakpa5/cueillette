@@ -24,9 +24,6 @@
 
   .card-trip-infos {
     padding: 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
   }
   .card-trip-pricing {
     font-size: 16px;
@@ -38,5 +35,11 @@
     position: absolute;
     top: 8px;
     right: 8px;
+  }
+  .btn-delete {
+    border: none;
+    background: none;
+    color: $red;
+    padding: 1px 0;
   }
 }
