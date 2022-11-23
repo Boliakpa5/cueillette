@@ -12,8 +12,5 @@ require "open-uri"
 }
 
 5.times {
-  product = Product.new(title: Faker::Cannabis.cannabinoid, price: rand(0...100), category: ["Légume", "Boisson"].sample, user: User.all.sample)
-  file = URI.open("https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/NES-Console-Set.jpg/1200px-NES-Console-Set.jpg")
-  product.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
-  product.save
+  product = Product.create(title: Faker::Cannabis.cannabinoid, price: rand(0...100), category: ["Légume", "Boisson"].sample, user: User.all.sample)
 }
