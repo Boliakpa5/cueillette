@@ -1,19 +1,28 @@
 <div class="wrapper">
   <div class="row mx-n1">
     <div class="col-md-4">
+      <% if @user.is_market %>
         <div style="width: 100%; height: 100vh; position: sticky; top: 0;"
           data-controller="map"
           data-map-markers-value="<%= @markers.to_json %>"
           data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
+      <% else %>
+        <div class="bg-img-tomate"></div>
+      <% end %>
     </div>
     <div class="col-md-8 pt-4">
       <div class="d-flex justify-content-between align-items-start">
           <div class="d-flex">
             <%= render 'devise/shared/avatar', user: @user %>
             <div class="ms-3">
-              <h1><%= @user.market_name %></h1>
-              <p>Owner: <%= @user.first_name %> <%= @user.last_name[0] %>.</p>
+              <% if @user.is_market %>
+                <h1><%= @user.market_name %></h1>
+                <p>Owner: <%= @user.first_name %> <%= @user.last_name[0] %>.</p>
+              <% else %>
+                <h1>Hi, <%= @user.first_name %> <%= @user.last_name %>!</h1>
+                <p><span class="text-secondary">Email:</span> <%= @user.email %></p>
+              <% end %>
             </div>
           </div>
           <% if current_user == @user %>
@@ -21,19 +30,20 @@
           <% end %>
       </div>
       <hr>
-      <div class="d-flex justify-content-between mb-3">
-        <h2 class="h3">Available product<%= @products.where(user_id: @user).count > 1 ? 's' : '' %>:</h2>
-        <% if current_user == @user %>
-          <%= link_to "Rajouter un produit",  new_product_path(user_id: @user), class: 'btn btn-outline-success' %>
-        <% end %>
-      </div>
-      <div class="row">
-        <% @products.where(user_id: @user).each do |product| %>
-          <div class="col-md-4">
-            <%= render 'product', product: product, user: @user %>
-          </div>
-        <% end %>
-      </div>
+      <% if @user.is_market  %>
+        <div class="d-flex justify-content-between mb-3">
+          <h2 class="h3">Available product<%= @products.where(user_id: @user).count > 1 ? 's' : '' %>:</h2>
+          <% if current_user == @user %>
+            <%= link_to "Rajouter un produit",  new_product_path(user_id: @user), class: 'btn btn-outline-success' %>
+          <% end %>
+        </div>
+        <div class="row">
+          <% @products.where(user_id: @user).each do |product| %>
+            <div class="col-md-4">
+              <%= render 'product', product: product, user: @user %>
+            </div>
+          <% end %>
+        </div>
         <div class="card text-bg-light mb-3">
           <div class="card-header">About <%= @user.market_name %></div>
           <div class="card-body">
@@ -41,6 +51,7 @@
             <p class="card-text">Phone number: <%= @user.phone_number.blank? ? '...' : @user.phone_number %></p>
           </div>
         </div>
+      <% end %>
     </div>
   </div>
 </div>
