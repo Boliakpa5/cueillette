@@ -1,0 +1,20 @@
+<div class="card-trip">
+  <span class="badge rounded-pill text-bg-success"><%= product.category %></span>
+  <% if product.photo.attached? %>
+    <%= cl_image_tag product.photo.key %>
+  <% else %>
+    <%= image_tag 'default-vegetables.jpg' %>
+  <% end %>
+  <div class="card-trip-infos">
+    <div>
+      <h3><%= product.title  %></h3>
+      <p><%= product.description %></p>
+    </div>
+    <h2 class="card-trip-pricing"><%= product.price %>€</h2>
+  </div>
+  <% if current_user == user %>
+    <%= button_to "Delete product", product_path(product), method: :delete %>
+  <% else %>
+    <%= link_to "Buy product", new_product_order_path(product)  %>
+  <% end %>
+</div>
