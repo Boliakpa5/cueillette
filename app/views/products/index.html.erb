@@ -2,10 +2,19 @@
   <div class="row py-4">
     <div class="col-md-4">
       <% if @user.is_market %>
-        <div style="width: 100%; height: 600px; position: sticky; top: 0;" class="shadow-sm rounded"
+        <div style="width: 100%; height: 400px;" class="shadow-sm rounded mb-4"
           data-controller="map"
           data-map-markers-value="<%= @markers.to_json %>"
           data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
+        <div class="card text-bg-light mb-3 rounded">
+          <div class="card-header">À propos de <%= @user.market_name %></div>
+          <div class="card-body">
+            <p class="card-text"><i class="fa-solid fa-house text-success"></i> <%= @user.address %></p>
+            <% unless @user.phone_number.blank? %>
+              <p class="card-text"><i class="fa-solid fa-phone text-success"></i> <%= @user.phone_number %></p>
+            <% end %>
+          </div>
         </div>
       <% else %>
         <div class="bg-img-tomate"></div>
@@ -70,13 +79,6 @@
                 <% end %>
               </div>
             <% end %>
-          </div>
-        </div>
-        <div class="card text-bg-light mb-3">
-          <div class="card-header">À propos de <%= @user.market_name %></div>
-          <div class="card-body">
-            <p class="card-text">Adresse : <%= @user.address %></p>
-            <p class="card-text">Téléphone : <%= @user.phone_number.blank? ? '...' : @user.phone_number %></p>
           </div>
         </div>
       <% end %>
