@@ -14,11 +14,11 @@
     <div class="d-flex align-items-center justify-content-between">
       <% if current_user == user %>
         <%= button_to product_path(product), method: :delete, class: "btn-delete " do %>
-          <i class="fa-regular fa-trash-can"></i> delete
+          <i class="fa-regular fa-trash-can"></i> Supprimer
         <% end %>
       <% else %>
         <%= link_to new_product_order_path(product), class: "btn btn-success" do %>
-          <i class="fa-solid fa-basket-shopping"></i> buy
+          <i class="fa-solid fa-basket-shopping"></i> Acheter
         <% end %>
       <% end %>
       <h3 class="card-product-pricing"><%= product.price %>€</h3>

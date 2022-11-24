@@ -30,5 +30,5 @@ User.create(address: "Kerlagadec, 29750 Loctudy", market_name: "BOEUF ANGUS de L
 User.create(address: "Kerautret, 29120 Tréméoc", market_name: "La Ferme De Kérautret", is_market: true, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, phone_number: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, password: "1234567182763")
 
 User.all.each do |i|
-  Product.create(title: Faker::Food.vegetables, price: rand(0...100), category: ["Fruit", "Vegetable", "Meat", "Dairy", "Drink", "Fish"].sample, user: i)
+  Product.create(title: Faker::Food.vegetables, price: rand(0...100), category: ["Fruit", "Légume", "Viande", "Boisson", "Poisson"].sample, user: i)
 end
