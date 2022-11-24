@@ -3,7 +3,11 @@ class ProductsController < ApplicationController
   before_action :set_user, only: [:index]
 
   def index
-    @products = policy_scope(Product)
+    if params[:query].present?
+      @products = Product.where(title: params[:query])
+    else
+      @products = policy_scope(Product)
+    end
     @markers = [{
       lat: @user.latitude,
       lng: @user.longitude

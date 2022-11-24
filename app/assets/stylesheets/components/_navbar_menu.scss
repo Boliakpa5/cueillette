@@ -1,0 +1,43 @@
+.navbar-lewagon-menu {
+  justify-content: space-between;
+  background-size: cover;
+  background-position: center;
+  // position: sticky;
+  // top: 0;
+  // z-index: 999;
+
+  .navbar-collapse {
+    flex-grow: 0;
+  }
+
+  .navbar-brand .img {
+    width: 120px;
+  }
+
+  &.navbar-expand-sm {
+    flex-wrap: wrap;
+  }
+
+}
+
+
+.smallbox {
+  background: lightgrey;
+    border-radius: 3px;
+    padding: 5px;
+    color: white;
+    background-color:rgba(70, 70, 70, 0.5);
+}
+
+.smallbox .optstyle {
+  display: block;
+  padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+  font-size: larger;
+  font-weight: var(--bs-nav-link-font-weight);
+  color: var(--bs-nav-link-color);
+  text-decoration: none;
+  color: lightgrey;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  text-shadow: 0px 0px 1px grey, 0 0 20em grey, 0 0 20em grey;
+  opacity: 1;
+}
