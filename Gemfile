@@ -11,6 +11,8 @@ gem "cloudinary"
 
 gem "geocoder"
 
+gem "simple-form-datepicker"
+
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"

@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  CATEGORIES = ["Fruit", "Vegetable", "Meat", "Dairy", "Drink", "Fish"]
+  CATEGORIES = ["Fruit", "Légume", "Viande", "Boisson", "Poisson"]
   belongs_to :user
   has_many :orders
   has_one_attached :photo

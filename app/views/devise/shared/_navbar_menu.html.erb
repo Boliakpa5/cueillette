@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon-menu" style="background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)), url(<%= asset_path 'home_page.jpg' %>);">
   <div class="container-fluid">
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag "logo-small.png", alt: 'Logo Cueillette', width: 120 %>
@@ -9,10 +9,10 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
+      <ul class="navbar-nav me-auto smallbox">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "Mes commandes", orders_path(user_id: current_user), class: "nav-link" %>
+            <%= link_to "Mes commandes", orders_path(user_id: current_user), class: "nav-link optstyle" %>
           </li>
           <li class="nav-item dropdown">
             <% if current_user.photo.attached? %>
@@ -35,5 +35,16 @@
         <% end %>
       </ul>
     </div>
+  </div>
+  <div class="banner">
+
+    <div class="container">
+
+      <h1><strong>Bienvenue sur Cueillette</strong></h1>
+
+      <p>Trouve les meilleurs producteurs autour de toi</p>
+
+    </div>
+
   </div>
 </div>
