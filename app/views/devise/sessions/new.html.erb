@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row justify-content-center p-4">
       <div class="p-4 rounded bg-white col-sm-8 col-lg-6">
-        <h2>Log in</h2>
+        <h2>Connexion</h2>
 
         <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: {turbo: false}) do |f| %>
           <div class="form-inputs">
@@ -12,13 +12,14 @@
                         input_html: { autocomplete: "email" } %>
             <%= f.input :password,
                         required: false,
-                        input_html: { autocomplete: "current-password" } %>
-            <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+                        input_html: { autocomplete: "current-password" },
+                        label: "Mot de passe" %>
+            <%= f.input :remember_me, label: "Se souvenir de moi", as: :boolean if devise_mapping.rememberable? %>
           </div>
 
           <div class="form-actions d-flex justify-content-end align-items-center">
-            <div class="text-end">Don't have an account? <%= render "devise/shared/links" %></div>
-            <%= f.button :submit, "Log in", class: 'btn btn-success ms-3' %>
+            <div class="text-end">Vous n'avez pas de compte ? <%= render "devise/shared/links" %></div>
+            <%= f.button :submit, "Connexion", class: 'btn btn-success ms-3' %>
           </div>
         <% end %>
       </div>
