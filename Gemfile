@@ -13,6 +13,8 @@ gem "geocoder"
 
 gem "simple-form-datepicker"
 
+gem "pg_search"
+
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
