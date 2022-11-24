@@ -1,12 +1,13 @@
-<%= render "devise/shared/banner" %>
+<%= render 'devise/shared/navbar_menu' %>
 
 
-<div class="container">
-  <br>
-  <h3>Choisis un producteur proche de toi</h3>
-  <div style="width: 100%; height: 600px;"
+<div class="mapbox">
+  <div class="py-5">Trouvez des Cueilleurs*(tradermark @Christof2Chefontèn) près de chez vous:</div>
+
+  <div class="mapcontroller" style="width: 100%; height: 600px;"
     data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 </div>
+

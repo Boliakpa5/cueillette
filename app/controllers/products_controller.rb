@@ -4,6 +4,12 @@ class ProductsController < ApplicationController
 
   def index
     @products = policy_scope(Product)
+    @user_products = Product.where(user_id: @user)
+    @user_orders = Order.where(product_id: @user_products.ids)
+    @user_categories = @user_products.map(&:category).uniq
+    if params[:query].present?
+      @products =  @products.search_by_tag(params[:query])
+    end
     @markers = [{
       lat: @user.latitude,
       lng: @user.longitude
@@ -40,6 +46,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:title, :description, :price, :category, :photo)
+    params.require(:product).permit(:title, :description, :price, :category, :photo, :user_id)
   end
 end

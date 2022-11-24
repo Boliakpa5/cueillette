@@ -1,1 +1,10 @@
 // Specific CSS for your home-page
+
+.mapbox {
+  padding-top: 35px;
+}
+
+.mapboxgl-map {
+  overflow: visible;
+  position: relative;
+}

@@ -16,8 +16,9 @@
   </head>
 
   <body>
-
-    <%= render 'devise/shared/navbar' %>
+    <% unless action_name == "home" %>
+      <%= render 'devise/shared/navbar' %>
+    <% end %>
     <main><%= yield %></main>
     <%= render 'devise/shared/footer' %>
   </body>
