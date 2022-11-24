@@ -4,6 +4,8 @@ class ProductsController < ApplicationController
 
   def index
     @products = policy_scope(Product)
+    @user_products = Product.where(user_id: @user)
+    @user_orders = Order.where(product_id: @user_products.ids)
     @markers = [{
       lat: @user.latitude,
       lng: @user.longitude

@@ -1,8 +1,8 @@
-<div class="wrapper">
-  <div class="row mx-n1">
+<div class="container">
+  <div class="row py-4">
     <div class="col-md-4">
       <% if @user.is_market %>
-        <div style="width: 100%; height: 100vh; position: sticky; top: 0;"
+        <div style="width: 100%; height: 600px; position: sticky; top: 0;" class="shadow-sm rounded"
           data-controller="map"
           data-map-markers-value="<%= @markers.to_json %>"
           data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
@@ -11,17 +11,21 @@
         <div class="bg-img-tomate"></div>
       <% end %>
     </div>
-    <div class="col-md-8 pt-4">
+    <div class="col-md-8">
       <div class="d-flex justify-content-between align-items-start">
           <div class="d-flex">
             <%= render 'devise/shared/avatar', user: @user %>
             <div class="ms-3">
               <% if @user.is_market %>
-                <h1><%= @user.market_name %></h1>
-                <p>Owner: <%= @user.first_name %> <%= @user.last_name[0] %>.</p>
+                <h1 class="mb-0"><%= @user.market_name %> <span class='h5 text-muted'>de <%= @user.first_name %> <%= @user.last_name[0] %>.</span></h1>
+                <p class='mb-0'><span class='text-muted'>On y trouve :</span>
+                  <% @user.products.each do |product| %>
+                    <%= render 'categories', category: product.category %>
+                  <% end %>
+                </p>
               <% else %>
-                <h1>Hi, <%= @user.first_name %> <%= @user.last_name %>!</h1>
-                <p><span class="text-secondary">Email:</span> <%= @user.email %></p>
+                <h1>Bonjour, <%= @user.first_name %> <%= @user.last_name %> !</h1>
+                <p><span class="text-muted">Email :</span> <%= @user.email %></p>
               <% end %>
             </div>
           </div>
@@ -30,9 +34,12 @@
           <% end %>
       </div>
       <hr>
-      <% if @user.is_market  %>
+      <% if @user.is_market %>
+        <% if current_user == @user %>
+          <%= render 'orders', user_orders: @user_orders %>
+        <% end %>
         <div class="d-flex justify-content-between mb-3">
-          <h2 class="h3">Available product<%= @products.where(user_id: @user).count > 1 ? 's' : '' %>:</h2>
+          <h2 class="h3">Produit<%= @user_products.count > 1 ? 's' : '' %> disponible<%= @products.where(user_id: @user).count > 1 ? 's' : '' %> :</h2>
           <% if current_user == @user %>
             <%= link_to "Rajouter un produit",  new_product_path(user_id: @user), class: 'btn btn-outline-success' %>
           <% end %>
@@ -43,12 +50,25 @@
               <%= render 'product', product: product, user: @user %>
             </div>
           <% end %>
+          <div class="col-md-4">
+            <% if current_user == @user %>
+              <div class="card-product-container">
+                <%= link_to new_product_path(user_id: @user), class: "add-product mb-4" do %>
+                  <div class="add-product-overlay">
+                    <div class="product-placeholder">
+                    Ajouter un produit
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
         </div>
         <div class="card text-bg-light mb-3">
-          <div class="card-header">About <%= @user.market_name %></div>
+          <div class="card-header">À propos de <%= @user.market_name %></div>
           <div class="card-body">
-            <p class="card-text">Address: <%= @user.address %></p>
-            <p class="card-text">Phone number: <%= @user.phone_number.blank? ? '...' : @user.phone_number %></p>
+            <p class="card-text">Adresse : <%= @user.address %></p>
+            <p class="card-text">Téléphone : <%= @user.phone_number.blank? ? '...' : @user.phone_number %></p>
           </div>
         </div>
       <% end %>
