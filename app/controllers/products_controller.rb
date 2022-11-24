@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
     @products = policy_scope(Product)
     @user_products = Product.where(user_id: @user)
     @user_orders = Order.where(product_id: @user_products.ids)
+    @user_categories = @user_products.map(&:category).uniq
     if params[:query].present?
       @products =  @products.search_by_tag(params[:query])
     end

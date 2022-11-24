@@ -7,8 +7,7 @@
           data-map-markers-value="<%= @markers.to_json %>"
           data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
-        <div class="card text-bg-light mb-3 rounded">
-          <div class="card-header">À propos de <%= @user.market_name %></div>
+        <div class="card text-bg-light mb-3">
           <div class="card-body">
             <p class="card-text"><i class="fa-solid fa-house text-success"></i> <%= @user.address %></p>
             <% unless @user.phone_number.blank? %>
@@ -21,15 +20,15 @@
       <% end %>
     </div>
     <div class="col-md-8">
-      <div class="d-flex justify-content-between align-items-start">
+      <div class="d-flex justify-content-between align-items-center">
           <div class="d-flex">
             <%= render 'devise/shared/avatar', user: @user %>
             <div class="ms-3">
               <% if @user.is_market %>
                 <h1 class="mb-0"><%= @user.market_name %> <span class='h5 text-muted'>de <%= @user.first_name %> <%= @user.last_name[0] %>.</span></h1>
                 <p class='mb-0'><span class='text-muted'>On y trouve :</span>
-                  <% @user.products.each do |product| %>
-                    <%= render 'categories', category: product.category %>
+                  <% @user_categories.each do |category| %>
+                    <%= render 'categories', category: category %>
                   <% end %>
                 </p>
               <% else %>
@@ -39,7 +38,9 @@
             </div>
           </div>
           <% if current_user == @user %>
-            <%= link_to 'Editter mes infos', edit_user_registration_path, class: 'btn btn-outline-success' %>
+            <%= link_to edit_user_registration_path, class: 'btn btn-success' do %>
+              <i class="fa-solid fa-pen-to-square"></i>
+            <% end %>
           <% end %>
       </div>
       <hr>
@@ -47,8 +48,8 @@
         <% if current_user == @user %>
           <%= render 'orders', user_orders: @user_orders %>
         <% end %>
-        <div class="d-flex justify-content-between mb-3">
-          <h2 class="h3">Produit<%= @user_products.count > 1 ? 's' : '' %> disponible<%= @products.where(user_id: @user).count > 1 ? 's' : '' %> :</h2>
+        <div class="d-flex justify-content-between mb-3 align-items-center">
+          <h2 class="h4">Produit<%= @user_products.count > 1 ? 's' : '' %> disponible<%= @products.where(user_id: @user).count > 1 ? 's' : '' %> :</h2>
           <%= form_with url: products_path, method: :get, class: "d-flex" do %>
             <%= hidden_field_tag :user_id, @user.id %>
             <%= text_field_tag :query,
@@ -58,25 +59,20 @@
             %>
             <%= submit_tag "Recherche", class: "btn btn-success" %>
           <% end %>
-
-          <% if current_user == @user %>
-            <%= link_to "Rajouter un produit",  new_product_path(user_id: @user), class: 'btn btn-outline-success' %>
-          <% end %>
         </div>
         <div class="row">
           <% @products.where(user_id: @user).each do |product| %>
-            <div class="col-md-4">
+            <div class="col-md-6 col-lg-4">
               <%= render 'product', product: product, user: @user %>
             </div>
           <% end %>
-          <div class="col-md-4">
+          <div class="col-md-6 col-lg-4">
             <% if current_user == @user %>
               <div class="card-product-container">
                 <%= link_to new_product_path(user_id: @user), class: "add-product mb-4" do %>
-                  <div class="add-product-overlay">
-                    <div class="product-placeholder">
-                    Ajouter un produit
-                    </div>
+                  <div class="card-product-add">
+                    <i class="fa-solid fa-circle-plus fa-2xl mb-3"></i>
+                    <p>Ajouter un produit</p>
                   </div>
                 <% end %>
               </div>

@@ -1,24 +1,27 @@
-<h2 class="h3">Mes commandes reçues :</h2>
-<% if user_orders.count == 0 %>
-  <p>Aucune commande pour l'instant...</p>
-<% else %>
-  <table class="table table-striped mb-4">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nom</th>
-        <th scope="col">Retrait prévu</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% user_orders.each do |order| %>
-        <tr>
-          <th scope="row"><%= order.id %></th>
-          <td><%= User.find(order.user_id).first_name %> <%= User.find(order.user_id).last_name %></td>
-          <td><%= order.pickup_date %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% end %>
-<hr>
+<div class="card text-bg-light mb-3">
+  <div class="card-body">
+    <h2 class="h4">Mes commandes reçues :</h2>
+    <% if user_orders.count == 0 %>
+      <p class='fst-italic text-muted'>Aucune commande pour l'instant...</p>
+    <% else %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Retrait prévu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% user_orders.each do |order| %>
+            <tr>
+              <th scope="row"><%= order.id %></th>
+              <td><%= User.find(order.user_id).first_name %> <%= User.find(order.user_id).last_name %></td>
+              <td><%= order.pickup_date %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>
