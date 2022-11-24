@@ -3,10 +3,9 @@ class ProductsController < ApplicationController
   before_action :set_user, only: [:index]
 
   def index
+    @products = policy_scope(Product)
     if params[:query].present?
-      @products = Product.where(title: params[:query])
-    else
-      @products = policy_scope(Product)
+      @products =  @products.search_by_tag(params[:query])
     end
     @markers = [{
       lat: @user.latitude,
@@ -44,6 +43,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:title, :description, :price, :category, :photo)
+    params.require(:product).permit(:title, :description, :price, :category, :photo, :user_id)
   end
 end
