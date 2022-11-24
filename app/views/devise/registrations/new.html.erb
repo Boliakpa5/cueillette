@@ -32,11 +32,11 @@
                         required: true,
                         hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                         input_html: { autocomplete: "new-password" },
-                        label: 'Mot de passe' %>
+                        label: 'Mot de passe', placeholder: '•••••••••' %>
             <%= f.input :password_confirmation,
                         required: true,
                         input_html: { autocomplete: "new-password" },
-                        label: 'Confirmation du mot de passe' %>
+                        label: 'Confirmation du mot de passe', placeholder: '•••••••••' %>
             <div data-controller="update-form">
               <div class="form-check form-switch ps-3" data-action="change->update-form#togglePart">
                 <%= f.input :is_market, class: 'form-check-input', label: "Voulez-vous vendre vos récoltes ?", input_html: { :"data-update-form-target" => "checkbox" } %>
@@ -54,14 +54,14 @@
                             label: 'Votre adresse', placeholder: '13 rue des récoltes, 10000 CUEILLETTE' %>
                 <%= f.input :phone_number,
                             autofocus: true,
-                            label: 'Numéro de téléphone' %>
+                            label: 'Numéro de téléphone', placeholder: 'XX XX XX XX XX' %>
               </div>
             </div>
           </div>
 
           <div class="form-actions d-flex justify-content-end align-items-center">
-            <div>Allready have an account? <%= render "devise/shared/links" %></div>
-            <%= f.button :submit, "Sign up", class: 'btn btn-success ms-3' %>
+            <div>Vous avez déjà un compte ? <%= render "devise/shared/links" %></div>
+            <%= f.button :submit, "Inscription", class: 'btn btn-success ms-3' %>
           </div>
         <% end %>
 

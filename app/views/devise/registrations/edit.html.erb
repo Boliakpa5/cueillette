@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row justify-content-center p-4">
       <div class="p-4 rounded bg-white col-sm-8 col-lg-6">
-        <h2>Mettre à jour <%= resource_name.to_s.humanize %></h2>
+        <h2>Mettre à jour mon profil</h2>
 
         <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
           <%= f.error_notification %>
@@ -15,13 +15,13 @@
             <% end %>
 
             <%#= f.input :password,
-                        hint: "leave it blank if you don't want to change it",
+                        hint: "Laissez ce champ vide si vous ne voulez pas le modifier",
                         required: false,
                         input_html: { autocomplete: "new-password" }, label: 'Nouveau mot de passe' %>
             <%#= f.input :password_confirmation,
                         required: false,
                         input_html: { autocomplete: "new-password" }, label: 'Confirmation mot de passe' %>
-            <%#= f.input :current_password,
+            <%= f.input :current_password,
                         hint: "Il nous faut votre mot de passe pour confirmer vos modifications",
                         required: true,
                         input_html: { autocomplete: "current-password" }, label: 'Mot de passe actuel' %>
@@ -34,7 +34,9 @@
               <div class="d-none" data-update-form-target="seller">
                 <%= f.input :market_name,
                             required: true,
-                            autofocus: true %>
+                            autofocus: true,
+                            label: 'Nom de votre marché', placeholder: 'Le potager de Jean',
+                            hint: "Il s'agit du nom qui sera affiché sur votre page"  %>
                 <%= f.input :address,
                             required: true,
                             autofocus: true,
