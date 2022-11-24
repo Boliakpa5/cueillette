@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row justify-content-center p-4">
       <div class="p-4 rounded bg-white col-sm-8 col-lg-6">
-        <h2>Edit <%= resource_name.to_s.humanize %></h2>
+        <h2>Mettre à jour <%= resource_name.to_s.humanize %></h2>
 
         <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
           <%= f.error_notification %>
@@ -11,51 +11,49 @@
             <%= f.input :email, required: true, autofocus: true %>
 
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-              <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+              <p>En attente de confirmation pour : <%= resource.unconfirmed_email %></p>
             <% end %>
 
-            <%= f.input :password,
+            <%#= f.input :password,
                         hint: "leave it blank if you don't want to change it",
                         required: false,
-                        input_html: { autocomplete: "new-password" } %>
-            <%= f.input :password_confirmation,
+                        input_html: { autocomplete: "new-password" }, label: 'Nouveau mot de passe' %>
+            <%#= f.input :password_confirmation,
                         required: false,
-                        input_html: { autocomplete: "new-password" } %>
-            <%= f.input :current_password,
-                        hint: "we need your current password to confirm your changes",
+                        input_html: { autocomplete: "new-password" }, label: 'Confirmation mot de passe' %>
+            <%#= f.input :current_password,
+                        hint: "Il nous faut votre mot de passe pour confirmer vos modifications",
                         required: true,
-                        input_html: { autocomplete: "current-password" } %>
+                        input_html: { autocomplete: "current-password" }, label: 'Mot de passe actuel' %>
             <%= f.input :photo, as: :file %>
             <div data-controller="update-form">
               <div class="form-check form-switch ps-3" data-action="change->update-form#togglePart">
-                <%= f.input :is_market, class: 'form-check-input', label: "Do you wan't to sell your own products?", input_html: { :"data-update-form-target" => "checkbox" } %>
+                <%= f.input :is_market, class: 'form-check-input', label: "Voulez-vous vendre vos récoltes ?", input_html: { :"data-update-form-target" => "checkbox" } %>
               </div>
 
-              <div class="d-none bg-light" data-update-form-target="seller">
+              <div class="d-none" data-update-form-target="seller">
                 <%= f.input :market_name,
                             required: true,
                             autofocus: true %>
                 <%= f.input :address,
                             required: true,
                             autofocus: true,
-                            input_html: {data: {address_autocomplete_target: "address"}},
-  wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+                            input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},
+  wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
                 <%= f.input :phone_number,
                             autofocus: true %>
               </div>
             </div>
           </div>
 
-          <div class="form-actions">
-            <%= f.button :submit, "Update", class: 'btn btn-success' %>
+          <div class="form-actions text-end">
+            <%= f.button :submit, "Mettre à jour", class: 'btn btn-success' %>
           </div>
         <% end %>
 
-        <h3>Cancel my account</h3>
+        <p><%= link_to "Supprimer mon compte", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'link-danger' %></p>
 
-        <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-        <%= link_to "Back", :back %>
+        <%= link_to "Annuler", :back %>
       </div>
     </div>
   </div>
