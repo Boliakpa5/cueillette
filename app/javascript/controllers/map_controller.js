@@ -21,7 +21,14 @@ export default class extends Controller {
 
     this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
       mapboxgl: mapboxgl }))
+
+    // disable map zoom when using scroll
+    this.map.scrollZoom.disable();
+
+    this.map.addControl(new mapboxgl.NavigationControl());
   }
+
+
 
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
