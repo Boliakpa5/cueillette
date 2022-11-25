@@ -1,4 +1,4 @@
-<%= render 'devise/shared/avatar', user: user %>
+<%= render 'shared/avatar', user: user %>
 <h2 class="mt-2"><%= user.market_name %></h2>
 <p>Propose:
   <% Product.where(user_id: user).map(&:category).uniq.each do |category| %>
