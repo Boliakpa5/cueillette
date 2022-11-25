@@ -13,7 +13,17 @@
               <% if product.photo.attached? %>
                 <%= cl_image_tag product.photo.key %>
               <% else %>
-                <%= image_tag 'default-vegetables.jpg' %>
+                <% case product.category when 'Fruit' %>
+                  <%= image_tag 'default-fruits.jpg' %>
+                <% when 'Légume' %>
+                  <%= image_tag 'default-vegetables.jpg' %>
+                <% when 'Viande' %>
+                  <%= image_tag 'default-meat.jpg' %>
+                <% when 'Boisson' %>
+                  <%= image_tag 'default-drink.jpg' %>
+                <% when 'Poisson' %>
+                  <%= image_tag 'default-fish.jpg' %>
+                <% end %>
               <% end %>
               <div class="card-product-infos">
                 <div>
