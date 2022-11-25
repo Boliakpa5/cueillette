@@ -1,8 +1,8 @@
-<h2><%= link_to user.market_name, products_path(user_id: user) %></h2>
-<div class="cardimg">
-<% if user.photo.attached? %>
-    <%= cl_image_tag user.photo.key %>
-  <% else %>
-    <%= image_tag 'default-vegetables.jpg' %>
+<%= render 'devise/shared/avatar', user: user %>
+<h2 class="mt-2"><%= user.market_name %></h2>
+<p>Propose:
+  <% Product.where(user_id: user).map(&:category).uniq.each do |category| %>
+    <%= render 'products/categories', category: category %>
   <% end %>
-</div>
+</p>
+<%= link_to 'Voir ce producteur', products_path(user_id: user), class: 'btn btn-success stretched-link w-100' %>

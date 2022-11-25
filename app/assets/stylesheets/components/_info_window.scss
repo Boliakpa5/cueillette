@@ -1,4 +1,11 @@
-.cardimg {
-  width: 100%;
-  overflow: hidden;
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+  max-width: 300px;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(5px);
+  border: 1px solid white;
+  box-shadow: inset 0 0 30px white;
 }
