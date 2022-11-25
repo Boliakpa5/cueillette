@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = policy_scope(Product)
-    @user_products = Product.where(user_id: @user)
+    @user_products = Product.where(user_id: @user, status: true)
     @user_orders = Order.where(product_id: @user_products.ids)
     @user_categories = @user_products.map(&:category).uniq
     if params[:query].present?
@@ -35,7 +35,8 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     authorize @product
-    @product.delete
+    @product.status = false
+    @product.save
     redirect_to products_path(user_id: current_user)
   end
 
