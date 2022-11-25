@@ -1,14 +1,18 @@
 .mapboxgl-ctrl-geocoder--input {
   max-width: none;
-  width: 300px;
-  height: 60px;
-  border: 1px solid black;
+  width: 250px;
+  height: 50px;
+  // border: 1px solid black;
   box-shadow: none;
-  background-color: transparent;
-  position: absolute;
-  top: -95px;
-  left: -860px;
-  overflow: visible;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.527);
+  opacity: 0.9;
+  align-self: center;
+  // position: absolute;
+  // top: -95px;
+  // left: -860px;
+  // overflow: visible;
 }
 
 .mapboxgl-ctrl-geocoder svg {
