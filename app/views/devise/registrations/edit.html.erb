@@ -40,10 +40,10 @@
                 <%= f.input :address,
                             required: true,
                             autofocus: true,
-                            input_html: {data: {address_autocomplete_target: "address"}},
-                            wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
+                            label: 'Votre adresse', placeholder: '13 rue des récoltes, 10000 CUEILLETTE' %>
                 <%= f.input :phone_number,
-                            autofocus: true %>
+                            autofocus: true,
+                            label: 'Numéro de téléphone', placeholder: 'XX XX XX XX XX' %>
               </div>
             </div>
           </div>
