@@ -3,6 +3,11 @@ class PagesController < ApplicationController
   def home
     @users = User.where(is_market: true)
     @products = Product.where(status: true)
+    @reviews = [
+      "J'aime vraiment les produits, de saison et frais ! Et quel plaisir de recontrer des gens du coin.",
+      "Je peux manger des légumes de qualité à des prix défiant toute concurrence. Et en circuit court.",
+      "Avant, je jettais une grosse partie de ce que produit mon prunier, mais avec Cueillette, je peux revendre le surplus."
+    ]
     # The `geocoded` scope filters only flats with coordinates
     @markers = @users.geocoded.map do |user|
       {

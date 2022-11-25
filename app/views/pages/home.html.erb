@@ -2,7 +2,7 @@
 <%= render 'shared/banner' %>
 
 <div class="container">
-  <section class="py-5">
+  <section class="mb-3">
     <h2 class="h3 text-center mb-3">Voici une sélection de produits qui pourraient vous intéresser :</h2>
     <div class="row justify-content-center">
       <% @products.sample(4).each do |product| %>
@@ -36,17 +36,36 @@
       <% end %>
     </div>
   </section>
-
-  <h2 class="h3 text-center mb-3">Découvrez des cueilleurs et cueilleuses près de chez vous :</h2>
-
-  <div class="mapbox">
-    <div class="mapcontroller" style="width: 100%; height: 600px;"
-      data-controller="map"
-      data-map-markers-value="<%= @markers.to_json %>"
-      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-    </div>
+  <div class="text-center mb-3">
+    <i class="fa-solid fa-seedling text-success"></i>
+    <i class="fa-solid fa-seedling text-success"></i>
+    <i class="fa-solid fa-seedling text-success"></i>
   </div>
-
-  <h2 class="h3 text-center mb-3">Découvrez des cueilleurs et cueilleuses près de chez vous :</h2>
-
+  <section class="mb-4">
+    <h2 class="h3 text-center mb-3">Découvrez des cueilleurs et cueilleuses près de chez vous :</h2>
+    <div class="mapbox py-0">
+      <div class="mapcontroller" style="width: 100%; height: 600px;"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
+  </section>
+  <div class="text-center mb-3">
+    <i class="fa-solid fa-seedling text-success"></i>
+    <i class="fa-solid fa-seedling text-success"></i>
+    <i class="fa-solid fa-seedling text-success"></i>
+  </div>
+  <section class="mb-5">
+    <h2 class="h3 text-center mb-3">Produisez, mangez, souriez</h2>
+      <div class="row justify-content-center">
+        <% @users.first(3).each_with_index do |user, index| %>
+          <div class="col-md-3 text-center p-3">
+            <%= render 'shared/avatar', user: user %>
+            <p class="text-success quoted mt-3"><%= @reviews[index] %></i></p>
+            <%= link_to 'Visiter sa page', products_path(user_id: user), class: 'btn btn-success' %>
+          </div>
+        <% end %>
+      </div>
+  </section>
 </div>
