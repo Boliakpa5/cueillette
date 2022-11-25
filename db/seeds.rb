@@ -33,15 +33,16 @@ user = User.create(address: "32 Rte de Perguet, 29170 Fouesnant", market_name: "
 user.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/joseph.png')), filename: 'joseph')
 user = User.create(address: "12 Hent Kermao, 29950 Gouesnach", market_name: "LES VERGERS DE KERMAO", is_market: true, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, phone_number: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, password: "1234567182763")
 user.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/michel.jpg')), filename: 'michel')
+p "patience..."
 user = User.create(address: "54 Hent Carbon, 29170 Fouesnant", market_name: "Cidrerie de Menez Brug", is_market: true, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, phone_number: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, password: "1234567182763")
 user.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/michou.jpg')), filename: 'michou')
 user = User.create(address: "29700 Plomelin", market_name: "Vergers Pen Allée", is_market: true, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, phone_number: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, password: "1234567182763")
 user.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/rene.png')), filename: 'rene')
-user = User.create(address: "29120 Pont-l'Abbé", market_name: "Gaec du Pouldon", is_market: true, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, phone_number: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, password: "1234567182763")
+user = User.create(address: "29120 Pont-l'Abbé", market_name: "Le Potager de Xavier", is_market: true, first_name: "Xavier", last_name: "Ker Kardellac", phone_number: Faker::PhoneNumber.cell_phone, email: "xavier@gmail.com", password: "coucou")
 user.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/xavier.png')), filename: 'xavier')
 
-User.all.each do |i|
-  p "Adding products to user #{i}..."
+User.where.not(first_name: "Xavier").each do |i|
+  p "Adding products to user #{i.first_name}..."
   3.times {
     Product.create(title: Faker::Food.vegetables, price: rand(0...10), category: "Légume", user: i)
     Product.create(title: Faker::Food.fruits, price: rand(0...10), category: "Fruit", user: i)
@@ -51,5 +52,17 @@ User.all.each do |i|
   }
   rand(10..14).times { Product.where(user: i).sample.destroy }
 end
+
+User.where(first_name: "Xavier").each do |i|
+  p "Adding products our boy Xavier..."
+  Product.create(title: "Courgette", price: 2.5, category: "Légume", user: i)
+  Product.create(title: "Pommes", price: 3, category: "Fruit", user: i)
+  Product.create(title: "Poulet", price: 8, category: "Viande", user: i)
+  Product.create(title: "Limonade", price: 1, category: "Boisson", user: i)
+  Product.create(title: "Truite", price: 5, category: "Poisson", user: i)
+end
+
+p "Creating orders for xavier...."
+3.times { Order.create(user: User.where.not(first_name: "Xavier").sample, product: User.last.products.sample, pickup_date: Date.today) }
 
 p "Done! Don't forget to run rails s ;)"
