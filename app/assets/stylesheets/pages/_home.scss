@@ -8,3 +8,11 @@
 //   overflow: visible;
 //   position: relative;
 // }
+.quoted:before {
+  font: var(--fa-font-solid);
+  content: "\f10d\00a0";
+}
+.quoted:after {
+  font: var(--fa-font-solid);
+  content: "\00a0\f10e";
+}

@@ -6,13 +6,16 @@
   box-shadow: none;
   background-color: white;
   border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.527);
-  opacity: 0.9;
+  border: none;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+  // opacity: 0.9;
   align-self: center;
   // position: absolute;
   // top: -95px;
   // left: -860px;
   // overflow: visible;
+  padding: 1rem;
+  font-size: medium;
 }
 
 .mapboxgl-ctrl-geocoder svg {
