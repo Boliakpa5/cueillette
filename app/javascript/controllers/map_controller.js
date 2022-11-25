@@ -18,7 +18,7 @@ export default class extends Controller {
     })
 
     this.#addMarkersToMap()
-    // this.#fitMapToMarkers()
+    this.#fitMapToMarkers()
 
     const geolocate = new mapboxgl.GeolocateControl({
       positionOptions: {
@@ -40,9 +40,9 @@ export default class extends Controller {
       this.map.addControl(new mapboxgl.NavigationControl());
     }
 
-    this.map.on('load', function() {
-	    geolocate.trigger();
-    });
+    // this.map.on('load', function() {
+	  //   geolocate.trigger();
+    // });
 
 
     // disable map zoom when using scroll
