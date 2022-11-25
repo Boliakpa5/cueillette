@@ -61,7 +61,7 @@
           <% end %>
         </div>
         <div class="row">
-          <% @products.where(user_id: @user).each do |product| %>
+          <% @products.where(user_id: @user, status: true).each do |product| %>
             <div class="col-md-6 col-lg-4">
               <%= render 'product', product: product, user: @user %>
             </div>
@@ -83,5 +83,3 @@
     </div>
   </div>
 </div>
-
-<%# if policy(Product).new? %>
