@@ -24,6 +24,14 @@ class OrdersController < ApplicationController
     end
   end
 
+  def destroy
+    @order = Order.find(params[:id])
+    authorize @order
+    @order.status = true
+    @order.save
+    redirect_to products_path(user_id: current_user)
+  end
+
   private
 
   def set_user

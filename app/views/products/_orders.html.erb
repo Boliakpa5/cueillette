@@ -14,12 +14,15 @@
           </tr>
         </thead>
         <tbody>
-          <% user_orders.each do |order| %>
+          <% user_orders.where(status: false).each do |order| %>
             <tr>
               <th scope="row"><%= order.id %></th>
               <td><%= User.find(order.user_id).first_name %> <%= User.find(order.user_id).last_name %></td>
               <td><%= order.pickup_date %></td>
                <td><%= order.product.title %></td>
+               <td><%= button_to order_path(order), method: :delete, class: "btn btn-success " do %>
+                    Livré
+                    <% end %></th>
             </tr>
           <% end %>
         </tbody>
