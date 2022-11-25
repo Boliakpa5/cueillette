@@ -18,26 +18,31 @@ export default class extends Controller {
     })
 
     this.#addMarkersToMap()
-    this.#fitMapToMarkers()
+    // this.#fitMapToMarkers()
+
+    const geolocate = new mapboxgl.GeolocateControl({
+      positionOptions: {
+      enableHighAccuracy: true
+      },
+      // When active the map will receive updates to the device's location as it changes.
+      trackUserLocation: true,
+      // Draw an arrow next to the location dot to indicate which direction the device is heading.
+      showUserHeading: true
+      });
+
+    console.log(geolocate)
 
 
     if (queryString == "") {
       this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
         mapboxgl: mapboxgl }))
-      this.map.addControl(
-        new mapboxgl.GeolocateControl({
-        positionOptions: {
-        enableHighAccuracy: true
-        },
-        // When active the map will receive updates to the device's location as it changes.
-        trackUserLocation: true,
-        // Draw an arrow next to the location dot to indicate which direction the device is heading.
-        showUserHeading: true
-        })
-        );
-        this.map.addControl(new mapboxgl.NavigationControl());
+      this.map.addControl(geolocate);
+      this.map.addControl(new mapboxgl.NavigationControl());
     }
 
+    this.map.on('load', function() {
+	    geolocate.trigger();
+    });
 
 
     // disable map zoom when using scroll
