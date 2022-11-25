@@ -8,10 +8,12 @@
 require 'open-uri'
 require 'faker'
 
+p "Destroying things..."
 Order.destroy_all
 Product.destroy_all
 User.destroy_all
 
+p "Creating users..."
 User.create(address: "Kervihan, 29700 Pluguffan", market_name: "La Ferme de Kervihan", is_market: true, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, phone_number: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, password: "1234567182763")
 User.create(address: "41 Hent Alexandre Masse, 29700 Plomelin", market_name: "Legumaj Kergwenn", is_market: true, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, phone_number: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, password: "1234567182763")
 User.create(address: "15 Chem. de Kermadec, 29000 Quimper", market_name: "Quintin Annick", is_market: true, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, phone_number: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, password: "1234567182763")
@@ -29,8 +31,17 @@ User.create(address: "Place Jean Jaurès Les Halles, 29900 Concarneau", market_n
 User.create(address: "Kerlagadec, 29750 Loctudy", market_name: "BOEUF ANGUS de Loctudy", is_market: true, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, phone_number: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, password: "1234567182763")
 User.create(address: "Kerautret, 29120 Tréméoc", market_name: "La Ferme De Kérautret", is_market: true, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, phone_number: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, password: "1234567182763")
 
+
 User.all.each do |i|
-  rand(1..7).times {
-    Product.create(title: Faker::Food.vegetables, price: rand(0...10), category: ["Fruit", "Légume", "Viande", "Boisson", "Poisson"].sample, user: i)
+  p "Adding products to user #{i}..."
+  3.times {
+    Product.create(title: Faker::Food.vegetables, price: rand(0...10), category: "Légume", user: i)
+    Product.create(title: Faker::Food.fruits, price: rand(0...10), category: "Fruit", user: i)
+    Product.create(title: Faker::Creature::Animal.name, price: rand(0...10), category: "Viande", user: i)
+    Product.create(title: Faker::Tea.variety, price: rand(0...10), category: "Boisson", user: i)
+    Product.create(title: Faker::Food.sushi, price: rand(0...10), category: "Poisson", user: i)
   }
+  rand(10..14).times { Product.where(user: i).sample.destroy }
 end
+
+p "Done! Don't forget to run rails s ;)"
