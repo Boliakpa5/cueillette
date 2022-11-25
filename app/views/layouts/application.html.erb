@@ -16,10 +16,10 @@
   </head>
 
   <body>
-    <% unless action_name == "home" %>
-      <%= render 'devise/shared/navbar' %>
-    <% end %>
+    <%# unless action_name == "home" %>
+      <%= render 'shared/navbar' %>
+    <%# end %>
     <main><%= yield %></main>
-    <%= render 'devise/shared/footer' %>
+    <%= render 'shared/footer' %>
   </body>
 </html>

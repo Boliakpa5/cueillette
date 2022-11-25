@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: :home
   def home
     @users = User.where(is_market: true)
+    @products = Product.where(status: true)
     # The `geocoded` scope filters only flats with coordinates
     @markers = @users.geocoded.map do |user|
       {
