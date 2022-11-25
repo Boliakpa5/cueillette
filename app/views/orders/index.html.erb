@@ -1,10 +1,14 @@
-<div class="container">
-<h1 class="text-center my-5">Mes commandes</h1>
-  <div class="row">
-    <% @orders.where(user_id: @user).each do |order| %>
-        <div class="col-md-4">
-            <%= render 'order', order: order, user: @user %>
-          </div>
-    <% end %>
+
+<div class="bckgrd_mes_commandes">
+  <div class="container">
+    <h1 class="title_mes_commandes"><strong>Mes commandes</strong></h1>
+    <br>
+      <div class="row">
+        <% @orders.where(user_id: @user).each do |order| %>
+            <div class="col-md-4">
+              <%= render 'order', order: order, user: @user %>
+            </div>
+        <% end %>
+      </div>
   </div>
 </div>
