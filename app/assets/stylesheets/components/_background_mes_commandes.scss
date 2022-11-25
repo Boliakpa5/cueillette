@@ -1,0 +1,7 @@
+.bckgrd_mes_commandes {
+  background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), asset-url("mes_commandes.jpg");
+  background-size: cover;
+  background-position: 50% 0;
+  min-height: calc(100vh - 66px);
+  padding-top: 50px;
+}

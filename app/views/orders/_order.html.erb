@@ -10,14 +10,14 @@
       <h3><%= order.product.title  %></h3>
       <p><%= order.product.description %></p>
     </div>
-    <h2 class="card-trip-pricing"><%= order.product.price %>€</h2>
+    <h2 class="card-trip-pricing"><%= sprintf('%.2f', order.product.price) %> €</h2>
   </div>
   <div class="market-info">
     <div>
       <h3><%= order.product.user.market_name  %></h3>
     </div>
     <div class="order-date">
-      <h3><%= order.pickup_date  %></h3>
+      <h3>à retirer le <%= order.pickup_date  %></h3>
     </div>
   </div>
 </div>
