@@ -10,6 +10,7 @@
             <th scope="col">#</th>
             <th scope="col">Nom</th>
             <th scope="col">Retrait prévu</th>
+            <th scope="col">Produit</th>
           </tr>
         </thead>
         <tbody>
@@ -18,6 +19,7 @@
               <th scope="row"><%= order.id %></th>
               <td><%= User.find(order.user_id).first_name %> <%= User.find(order.user_id).last_name %></td>
               <td><%= order.pickup_date %></td>
+               <td><%= order.product.title %></td>
             </tr>
           <% end %>
         </tbody>
